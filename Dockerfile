@@ -24,7 +24,7 @@ RUN apt-get update && apt-get -y dist-upgrade && apt-get --no-install-recommends
     sed -i 's/ xrange(/ range(/' /usr/lib/python3.6/pyzor/digest.py
 
 COPY bin/* /
-RUN chmod +x /tini /entrypoint.sh
+RUN chmod +x /tini /entrypoint.sh && mv /digest.py /usr/lib/python3.6/pyzor/digest.py
 
 EXPOSE ${LISTEN_PORT}
 # or what you declared with LISTEN_PORT
