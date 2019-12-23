@@ -7,7 +7,9 @@ from socketserver import TCPServer, ThreadingMixIn, StreamRequestHandler
 
 import pyzor.client
 import pyzor.digest
+import pyzor.config
 
+# import logging
 
 class RequestHandler(StreamRequestHandler):
 
@@ -22,8 +24,13 @@ class RequestHandler(StreamRequestHandler):
         parser = email.parser.BytesParser(policy=email.policy.SMTP)
         msg = parser.parse(self.rfile)
 
+        servers = pyzor.config.load_servers("/root/.pyzor/servers")
+        # log = "/tmp/pyzor.log"
+        # logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+        # logging.info(servers)
+
         digest = pyzor.digest.DataDigester(msg).value
-        check = pyzor.client.Client().check(digest)
+        check = pyzor.client.Client().check(digest, address=servers[0])
 
         self.write_json({k: v for k, v in check.items()})
 
