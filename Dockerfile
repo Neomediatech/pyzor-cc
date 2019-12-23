@@ -23,7 +23,6 @@ RUN apt-get update && apt-get -y dist-upgrade && apt-get --no-install-recommends
     rm -rf /usr/local/share/doc /usr/local/share/man && \
     sed -i 's/ xrange(/ range(/' /usr/lib/python3.6/pyzor/digest.py
 
-COPY pyzor/pyzorsocket/pyzorsocket.py /pyzorsocket.py
 COPY bin/* /
 RUN chmod +x /tini /entrypoint.sh
 
