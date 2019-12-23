@@ -7,8 +7,6 @@ To let rspamd use pyzor as one more tool to fight spam
 # Usage
 ` docker run -d -p 127.0.0.1:5953:5953 -e LISTEN_PORT=5953 --name pyzor-cc neomediatech/pyzor-cc `
 
-If you want to use custom pyzor server (like neomediatech/pyzor-server) bind mount configuration file with your ip/name pyzor server server, eg:  
-` docker run -d -p 127.0.0.1:5953:5953 -e LISTEN_PORT=5953 --name pyzor-cc -v /path/to/pyzor-server-conf/servers:/root/.pyzor/servers neomediatech/pyzor-cc `  
+If you want to use custom pyzor server (like neomediatech/pyzor-server) set PYZOR_SERVER env var eg:  
+` docker run -d -p 127.0.0.1:5953:5953 -e LISTEN_PORT=5953 -e PYZOR_SERVER=yourserver.domain.tld --name pyzor-cc neomediatech/pyzor-cc `  
 
-`servers` file will have ip/server name:port lines(s)  like:  
-pyzor.somedomain.tld:24441  
