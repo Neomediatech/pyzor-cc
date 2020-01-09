@@ -1,8 +1,7 @@
-FROM neomediatech/ubuntu-base
+FROM neomediatech/ubuntu-base:latest
 
 ENV VERSION=1.0.0 \
     SERVICE=pyzor-cc \
-    OS=ubuntu \
     DEBIAN_FRONTEND=noninteractive \
     LISTEN_PORT=5953
 
