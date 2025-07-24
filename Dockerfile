@@ -1,4 +1,4 @@
-FROM neomediatech/ubuntu-base:18.04
+FROM ghcr.io/neomediatech/ubuntu-base:24.04
 
 ENV VERSION=1.0.0 \
     SERVICE=pyzor-cc \
@@ -11,20 +11,14 @@ LABEL maintainer="docker-dario@neomediatech.it" \
       org.label-schema.vcs-url=https://github.com/Neomediatech/$SERVICE \
       org.label-schema.maintainer=Neomediatech
 
-RUN apt-get update && apt-get -y dist-upgrade && apt-get --no-install-recommends install -y python3 python-pip && \
+RUN apt-get update && apt-get -y dist-upgrade && apt-get --no-install-recommends install -y python3 python3-pip pyzor && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install setuptools && \
-    pip install wheel && \
-    pip install pyzor && \
-    cp -ar /usr/local/lib/python2.7/dist-packages/pyzor* /usr/lib/python3.6/ && \
-    sed -i 's/\.iteritems/\.items/' /usr/lib/python3.6/pyzor/client.py && \
-    rm -rf /usr/local/share/doc /usr/local/share/man && \
-    sed -i 's/ xrange(/ range(/' /usr/lib/python3.6/pyzor/digest.py
+    rm -rf /usr/local/share/doc /usr/local/share/man
 
 COPY bin/* /
-RUN chmod +x /entrypoint.sh && cp /digest.py /usr/lib/python3.6/pyzor/digest.py && \
-    mv /digest.py /usr/local/lib/python2.7/dist-packages/pyzor/digest.py
+#RUN chmod +x /entrypoint.sh && cp /digest.py /usr/lib/python3.6/pyzor/digest.py && \
+RUN chmod +x /entrypoint.sh
 
 EXPOSE ${LISTEN_PORT}
 # or what you declared with LISTEN_PORT
