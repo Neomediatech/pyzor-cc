@@ -1,0 +1,14 @@
+-----------------------------------
+gio 24 lug 2025, 19:00:23, CEST --- ghcr.io/neomediatech/pyzor-cc:latest
+
+Report Summary
+
+┌─────────────────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│                       Target                        │  Type  │ Vulnerabilities │ Secrets │
+├─────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ ghcr.io/neomediatech/pyzor-cc:latest (ubuntu 24.04) │ ubuntu │        0        │    -    │
+└─────────────────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
